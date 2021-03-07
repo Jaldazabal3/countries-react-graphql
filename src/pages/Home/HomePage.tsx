@@ -1,10 +1,28 @@
 import { Button, Container, Grid, TextField } from '@material-ui/core';
 import React, { useState } from 'react'
+import {
+  HomeModel
+} from './HomeModel';
 
 import './HomePage.scss';
 
-export default function HomePage() {
-  const [countryResult, setCountryResult] = useState('');
+const HomePage = () => {
+  const [countryData, setCountryData] = useState<HomeModel>({
+    countriesResult: [],
+    searchValue: ''
+  });
+
+  const countriesOrEmpty = () => {
+    if (countryData.countriesResult && countryData.countriesResult.length > 0) {
+      return <p>Hola</p>;
+    } else {
+      return (
+        <Container style={{marginTop: '50px'}}>
+          <img src="https://simplemaps.com/static/demos/resources/svg-library/svgs/world.svg" alt="World Map"/>
+        </Container>
+      )
+    }
+  }
 
 
   return (
@@ -23,13 +41,10 @@ export default function HomePage() {
         </Grid>
       </Grid>
       {
-        !countryResult ?
-          <Container style={{marginTop: '50px'}}>
-            <img src="https://simplemaps.com/static/demos/resources/svg-library/svgs/world.svg" alt="World Map"/>
-          </Container>
-        :
-          <p>Hola</p>
+        countriesOrEmpty()
       }
     </Container>
   );
 }
+
+export default HomePage;
