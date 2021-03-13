@@ -1,4 +1,4 @@
-export interface Country {
+export interface CountrySummaryModel {
   id: string;
   name: string;
   capital: string;
